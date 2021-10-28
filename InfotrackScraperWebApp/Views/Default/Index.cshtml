@@ -1,0 +1,49 @@
+﻿@model InfoTrackScraper.Models.Scrape
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>InfoTrack Scraper</title>
+</head>
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "Default", FormMethod.Post))
+        {
+            <h5>
+                @Html.LabelFor(m => m.Url)
+            </h5>
+            <div>
+                @Html.TextBoxFor(m => m.Url)
+            </div>
+            <h5>
+                @Html.LabelFor(m => m.Terms)
+            </h5>
+            <div>
+                @Html.TextBoxFor(m => m.Terms)
+            </div>
+            <div style="margin: 20px 0">
+                <button type="submit">Search</button>
+            </div>
+        }
+        @if (Model.Results != null)
+        {
+            <div>
+                @Html.LabelFor(m => m.Results)
+            </div>
+            <ul>
+                @foreach (var result in Model.Results)
+                {
+                    <li>
+                        @result
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</body>
+</html>
